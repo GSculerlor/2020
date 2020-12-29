@@ -1,5 +1,7 @@
 using osu.Framework.Allocation;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
+using osu.Framework.Graphics.Colour;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
@@ -14,16 +16,14 @@ namespace Project2020.Game
     public class MainScreen : Screen
     {
         [BackgroundDependencyLoader]
-        private void load()
-        {
-            InternalChildren = new Drawable[]
+        private void load() => InternalChildren = new Drawable[]
             {
-                new Box 
+                new Box
                 {
                     RelativeSizeAxes = Axes.Both,
                     Colour = Color4.White
                 },
-                new SpriteText 
+                new SpriteText
                 {
                     Origin = Anchor.TopLeft,
                     Anchor = Anchor.TopLeft,
@@ -32,22 +32,67 @@ namespace Project2020.Game
                     Font = FontsManager.GetFont(weight: FontWeight.SemiBold),
                     Colour = Color4.Black
                 },
-                new Container
+                new GridContainer
                 {
-                    Origin = Anchor.Centre,
-                    Anchor = Anchor.Centre,
                     RelativeSizeAxes = Axes.Both,
-                    Children = new Drawable[]
+                    ColumnDimensions = new[]
                     {
-                        new AlbumArt
+                        new Dimension(GridSizeMode.Absolute, size: 500),
+                        new Dimension(GridSizeMode.Distributed)
+                    },
+                    Content = new[]
+                    {
+                        new Drawable[]
                         {
-                            Origin = Anchor.Centre,
-                            Anchor = Anchor.Centre,
-                            Size = new Vector2(300),
+                            new Container
+                            {
+                                RelativeSizeAxes = Axes.Both,
+                                Children = new Drawable[]
+                                {
+                                    new Container
+                                    {
+                                        Origin = Anchor.Centre,
+                                        Anchor = Anchor.Centre,
+                                        RelativeSizeAxes = Axes.Y,
+                                        Width = 300,
+                                        Margin = new MarginPadding { Top = 300 },
+                                        Masking = true,
+                                        CornerRadius = 20,
+                                        Children = new Drawable[]
+                                        {
+                                            new Box
+                                            {
+                                                RelativeSizeAxes = Axes.Both,
+                                                Colour = Color4Extensions.FromHex(@"358879"),
+                                            },
+                                            new Box
+                                            {
+                                                RelativeSizeAxes = Axes.Both,
+                                                Colour = ColourInfo.GradientVertical(Color4.Black.Opacity(0.1f), Color4.Black.Opacity(0.6f)),
+                                            }
+                                        },
+                                    },
+                                    new AlbumArt
+                                    {
+                                        Origin = Anchor.Centre,
+                                        Anchor = Anchor.Centre,
+                                        Margin = new MarginPadding { Left = 100 },
+                                        Size = new Vector2(300),
+                                    },
+                                    new SpriteText
+                                    {
+                                        Origin = Anchor.BottomCentre,
+                                        Anchor = Anchor.BottomCentre,
+                                        Margin = new MarginPadding { Bottom = 20 },
+                                        Text = "track 1 of 5",
+                                        Font = FontsManager.GetFont(weight: FontWeight.SemiBold),
+                                        Colour = Color4.White
+                                    }
+                                }
+                            },
                         },
                     }
                 }
             };
-        }
     }
 }
