@@ -14,23 +14,19 @@ namespace Project2020.Game
         {
             InternalChildren = new Drawable[]
             {
-                new Box
+                new Box 
                 {
-                    Colour = Color4.Violet,
                     RelativeSizeAxes = Axes.Both,
+                    Colour = Color4.White
                 },
-                new SpriteText
+                new SpriteText 
                 {
-                    Y = 20,
-                    Text = "Main Screen",
-                    Anchor = Anchor.TopCentre,
-                    Origin = Anchor.TopCentre,
-                    Font = FontUsage.Default.With(size: 40)
+                    Origin = Anchor.TopLeft,
+                    Anchor = Anchor.TopLeft,
+                    Margin = new MarginPadding { Top = 20, Left = 100 },
+                    Text = "music.",
+                    Colour = Color4.Black
                 },
-                new SpinningBox
-                {
-                    Anchor = Anchor.Centre,
-                }
             };
         }
     }
