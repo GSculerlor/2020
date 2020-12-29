@@ -1,0 +1,11 @@
+﻿{
+  "solution": {
+    "path": "Project2020.sln",
+    "projects": [
+      "Project2020.Desktop\\Project2020.Desktop.csproj",
+      "Project2020.Game\\Project2020.Game.csproj",
+      "Project2020.Game.Tests\\Project2020.Game.Tests.csproj",
+      "Project2020.Resources\\Project2020.Resources.csproj"
+    ]
+  }
+}
