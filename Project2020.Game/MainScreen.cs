@@ -4,6 +4,7 @@ using osu.Framework.Graphics.Shapes;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Screens;
 using osuTK.Graphics;
+using Project2020.Game.Graphics.Fonts;
 
 namespace Project2020.Game
 {
@@ -25,6 +26,7 @@ namespace Project2020.Game
                     Anchor = Anchor.TopLeft,
                     Margin = new MarginPadding { Top = 20, Left = 100 },
                     Text = "music.",
+                    Font = FontsManager.GetFont(),
                     Colour = Color4.Black
                 },
             };
