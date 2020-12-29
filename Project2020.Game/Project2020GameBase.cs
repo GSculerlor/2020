@@ -35,6 +35,11 @@ namespace Project2020.Game
 
             //Fonts
             AddFont(Resources, @"Fonts/Raleway-Regular");
+            AddFont(Resources, @"Fonts/Raleway-Light");
+            AddFont(Resources, @"Fonts/Raleway-Medium");
+            AddFont(Resources, @"Fonts/Raleway-SemiBold");
+            AddFont(Resources, @"Fonts/Raleway-Bold");
+            AddFont(Resources, @"Fonts/Raleway-Black");
         }
     }
 }

@@ -25,8 +25,8 @@ namespace Project2020.Game
                     Origin = Anchor.TopLeft,
                     Anchor = Anchor.TopLeft,
                     Margin = new MarginPadding { Top = 20, Left = 100 },
-                    Text = "music.",
-                    Font = FontsManager.GetFont(),
+                    Text = "ganen. 2020.",
+                    Font = FontsManager.GetFont(weight: FontWeight.SemiBold),
                     Colour = Color4.Black
                 },
             };
