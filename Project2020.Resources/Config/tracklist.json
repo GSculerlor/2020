@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "song_name": "あの夢をなぞって",
+        "song_artist": "DECO*27",
+        "song_album": "アンデッドアリス",
+        "album_path": "Textures/album/neoneon.jpg",
+        "track_dir": "Tracks/neoneon.mp3",
+        "preview_time": 93388
+    },
+    {
+        "id": 2,
+        "song_name": "ネオネオン feat. 初音ミク",
+        "song_artist": "DECO*27",
+        "song_album": "アンデッドアリス",
+        "album_path": "Textures/album/neoneon.jpg",
+        "track_dir": "Tracks/neoneon.mp3",
+        "preview_time": 93388
+    },
+    {
+        "id": 3,
+        "song_name": "葵",
+        "song_artist": "DECO*27",
+        "song_album": "アンデッドアリス",
+        "album_path": "Textures/album/neoneon.jpg",
+        "track_dir": "Tracks/neoneon.mp3",
+        "preview_time": 93388
+    },
+    {
+        "id": 4,
+        "song_name": "Everlasting Summer",
+        "song_artist": "DECO*27",
+        "song_album": "アンデッドアリス",
+        "album_path": "Textures/album/neoneon.jpg",
+        "track_dir": "Tracks/neoneon.mp3",
+        "preview_time": 93388
+    },
+    {
+        "id": 5,
+        "song_name": "Urban Planning of Mercury",
+        "song_artist": "DECO*27",
+        "song_album": "アンデッドアリス",
+        "album_path": "Textures/album/neoneon.jpg",
+        "track_dir": "Tracks/neoneon.mp3",
+        "preview_time": 93388
+    }
+]
