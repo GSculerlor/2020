@@ -90,6 +90,34 @@ namespace Project2020.Game
                                     }
                                 }
                             },
+                            new GridContainer
+                            {
+                                RelativeSizeAxes = Axes.Both,
+                                RowDimensions= new[]
+                                {
+                                    new Dimension(GridSizeMode.AutoSize),
+                                    new Dimension(GridSizeMode.Distributed)
+                                },
+                                Content = new[]
+                                {
+                                    new Drawable[]
+                                    {
+                                        // Add hacky way to add space on first grid
+                                        new Container
+                                        {
+                                            RelativeSizeAxes = Axes.X,
+                                            Height = 150
+                                        }
+                                    },
+                                    new Drawable[]
+                                    {
+                                        new SongHeader
+                                        {
+                                            Margin = new MarginPadding { Left = 20 }
+                                        }
+                                    }
+                                }
+                            }
                         },
                     }
                 }
