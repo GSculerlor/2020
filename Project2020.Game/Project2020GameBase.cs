@@ -40,6 +40,12 @@ namespace Project2020.Game
             AddFont(Resources, @"Fonts/Raleway-SemiBold");
             AddFont(Resources, @"Fonts/Raleway-Bold");
             AddFont(Resources, @"Fonts/Raleway-Black");
+
+            AddFont(Resources, @"Fonts/Noto-Basic");
+            AddFont(Resources, @"Fonts/Noto-Hangul");
+            AddFont(Resources, @"Fonts/Noto-CJK-Basic");
+            AddFont(Resources, @"Fonts/Noto-CJK-Compatibility");
+            AddFont(Resources, @"Fonts/Noto-Thai");
         }
     }
 }
