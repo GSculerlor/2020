@@ -9,6 +9,7 @@ using osu.Framework.Screens;
 using osuTK;
 using osuTK.Graphics;
 using Project2020.Game.Graphics.Components;
+using Project2020.Game.Graphics.Components.TrackList;
 using Project2020.Game.Graphics.Fonts;
 
 namespace Project2020.Game
@@ -16,7 +17,9 @@ namespace Project2020.Game
     public class MainScreen : Screen
     {
         [BackgroundDependencyLoader]
-        private void load() => InternalChildren = new Drawable[]
+        private void load() 
+        {
+            InternalChildren = new Drawable[]
             {
                 new Box
                 {
@@ -111,9 +114,19 @@ namespace Project2020.Game
                                     },
                                     new Drawable[]
                                     {
-                                        new SongHeader
+                                        new FillFlowContainer
                                         {
-                                            Margin = new MarginPadding { Left = 20 }
+                                            RelativeSizeAxes = Axes.Both,
+                                            Direction = FillDirection.Vertical,
+                                            Margin = new MarginPadding { Left = 20 },
+                                            Children = new Drawable[]
+                                            {
+                                                new SongHeader(),
+                                                new TrackListScreen
+                                                {
+                                                    Margin = new MarginPadding { Top = 40 }
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -122,5 +135,6 @@ namespace Project2020.Game
                     }
                 }
             };
+        }
     }
 }
