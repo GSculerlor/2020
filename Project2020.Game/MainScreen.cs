@@ -118,7 +118,6 @@ namespace Project2020.Game
                                         {
                                             RelativeSizeAxes = Axes.Both,
                                             Direction = FillDirection.Vertical,
-                                            Margin = new MarginPadding { Left = 20 },
                                             Children = new Drawable[]
                                             {
                                                 new SongHeader(),

@@ -1,5 +1,6 @@
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
+using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
@@ -50,22 +51,38 @@ namespace Project2020.Game.Graphics.Components.TrackList
 
             public TrackRow(TrackSong track)
             {
-                RelativeSizeAxes = Axes.X;
+                Width = 600;
                 Height = 50;
                 Masking = true;
 
                 TrackModel = track;
 
-                InternalChildren = new Drawable[]
+                InternalChild = new Container
                 {
-                    new SpriteText
+                    RelativeSizeAxes = Axes.Both,
+                    Children = new Drawable[]
                     {
-                        Text = track.SongName,
-                        Font = FontsManager.GetFont(weight: FontWeight.Medium),
-                        Colour = Color4.DarkGray
-                    },
+                        new CircularProgressPlayButton(),
+                        new SpriteText
+                        {
+                            Origin = Anchor.CentreLeft,
+                            Anchor = Anchor.CentreLeft,
+                            Text = track.SongName,
+                            Font = FontsManager.GetFont(size: 20, weight: FontWeight.Medium),
+                            Colour = Color4.DarkGray,
+                            Margin = new MarginPadding { Left = 80 },
+                            Padding = new MarginPadding { Bottom = 2 }
+                        },
+                        new SpriteIcon
+                        {
+                            Origin = Anchor.CentreRight,
+                            Anchor = Anchor.CentreRight,
+                            Size = new Vector2(16),
+                            Icon = FontAwesome.Solid.Heart,
+                            Colour = Color4.LightGray
+                        }
+                    }
                 };
-
             }
         }
     }
