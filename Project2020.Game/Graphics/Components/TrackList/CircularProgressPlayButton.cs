@@ -87,7 +87,6 @@ namespace Project2020.Game.Graphics.Components.TrackList
             return true;
         }
 
-
         [Resolved]
         private AudioTrackManager audioTrackManager { get; set; }
 

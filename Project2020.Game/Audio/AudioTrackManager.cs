@@ -8,7 +8,6 @@ using osu.Framework.Audio.Track;
 using osu.Framework.Bindables;
 using osu.Framework.Graphics;
 using osu.Framework.IO.Stores;
-using osu.Framework.Logging;
 using Project2020.Game.Models;
 
 namespace Project2020.Game.Audio
@@ -56,22 +55,11 @@ namespace Project2020.Game.Audio
             return track;
         }
 
-        public void StopAnyPlaying(IAudioTrackOwner source)
-        {
-            if (CurrentTrack == null || (CurrentTrack.Owner != null && CurrentTrack.Owner != source))
-                return;
-
-            CurrentTrack.Stop();
-        }
-
         protected virtual TrackManagerAudioTrack CreatePreviewTrack(TrackSong trackSong, ITrackStore trackStore) =>
             new TrackManagerAudioTrack(trackSong, trackStore);
 
         public class TrackManagerAudioTrack : AudioTrack
         {
-            [Resolved(canBeNull: true)]
-            public IAudioTrackOwner Owner { get; private set; }
-
             private readonly TrackSong trackSong;
             private readonly ITrackStore trackManager;
 
@@ -79,12 +67,6 @@ namespace Project2020.Game.Audio
             {
                 this.trackSong = trackSong;
                 this.trackManager = trackManager;
-            }
-
-            protected override void LoadComplete()
-            {
-                base.LoadComplete();
-                Logger.Log($"A {nameof(AudioTrack)} was created without a containing {nameof(IAudioTrackOwner)}. An owner should be added for correct behaviour.");
             }
 
             protected override Track GetTrack() => trackManager.Get($"{trackSong.TrackDir}");

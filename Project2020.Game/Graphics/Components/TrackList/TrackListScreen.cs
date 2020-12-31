@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -14,8 +13,7 @@ using Project2020.Game.Models;
 
 namespace Project2020.Game.Graphics.Components.TrackList
 {
-    [Cached(typeof(IAudioTrackOwner))]
-    public class TrackListScreen : CompositeDrawable, IAudioTrackOwner
+    public class TrackListScreen : CompositeDrawable
     {
 
         private FillFlowContainer<TrackRow> trackListContainer;

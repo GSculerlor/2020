@@ -1,14 +1,10 @@
 using JetBrains.Annotations;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
-using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
-using osu.Framework.Graphics.Colour;
 using osu.Framework.Graphics.Containers;
-using osu.Framework.Graphics.Effects;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
-using osuTK.Graphics;
 using Project2020.Game.Models;
 
 namespace Project2020.Game.Graphics.Components
