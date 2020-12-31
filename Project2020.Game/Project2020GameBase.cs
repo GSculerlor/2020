@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Newtonsoft.Json;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -72,13 +71,6 @@ namespace Project2020.Game
             using (Stream stream = Resources.GetStream("Config/tracklist.json"))
             using (var sr = new StreamReader(stream))
                 TrackList.AddRange(JsonConvert.DeserializeObject<List<TrackSong>>(sr.ReadToEnd()));
-        }
-
-        protected override void LoadComplete()
-        {
-            base.LoadComplete();
-
-            ActiveTrack.Value = TrackList.FirstOrDefault();
         }
     }
 }
