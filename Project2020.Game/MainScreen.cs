@@ -81,15 +81,6 @@ namespace Project2020.Game
                                         Anchor = Anchor.Centre,
                                         Margin = new MarginPadding { Left = 100 },
                                         Size = new Vector2(300),
-                                    },
-                                    new SpriteText
-                                    {
-                                        Origin = Anchor.BottomCentre,
-                                        Anchor = Anchor.BottomCentre,
-                                        Margin = new MarginPadding { Bottom = 20 },
-                                        Text = "track 1 of 5",
-                                        Font = FontsManager.GetFont(size: 20, weight: FontWeight.Regular),
-                                        Colour = Color4.White
                                     }
                                 }
                             },
