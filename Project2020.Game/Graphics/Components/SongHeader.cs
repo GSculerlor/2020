@@ -42,7 +42,7 @@ namespace Project2020.Game.Graphics.Components
                     },
                     title = new SpriteText
                     {
-                        Text = "top 2020 songs, I guess",
+                        Text = "my top 2020 songs, I guess",
                         Font = FontsManager.GetFont(size: 80, weight: FontWeight.Black),
                         Colour = Color4.Black,
                         Anchor = Anchor.CentreLeft,
