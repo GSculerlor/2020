@@ -4,7 +4,7 @@
         "song_name": "あの夢をなぞって",
         "song_artist": "YOASOBI",
         "song_album": "あの夢をなぞって",
-        "album_path": "Textures/album/ano_yume.jpg",
+        "album_path": "Album/ano_yume.jpeg",
         "track_dir": "https://p.scdn.co/mp3-preview/7ae268c52e7103cdbe08c4a82317e85b55761c17"
     },
     {
@@ -12,7 +12,7 @@
         "song_name": "ネオネオン feat. 初音ミク",
         "song_artist": "DECO*27",
         "song_album": "アンデッドアリス",
-        "album_path": "Textures/album/neoneon.jpg",
+        "album_path": "Album/neoneon.jpeg",
         "track_dir": "https://p.scdn.co/mp3-preview/7705f0830f81b639cda2f47b753cb177fff37317"
     },
     {
@@ -20,7 +20,7 @@
         "song_name": "葵",
         "song_artist": "Aimyon",
         "song_album": "Her Blue Sky",
-        "album_path": "Textures/album/aoi.jpg",
+        "album_path": "Album/aoi.jpeg",
         "track_dir": "https://p.scdn.co/mp3-preview/73aa3ce9133d8d059e6064a2c5e5c50fb1d0ea71"
     },
     {
@@ -28,7 +28,7 @@
         "song_name": "Everlasting Summer",
         "song_artist": "Seycara Orchestral, Hikaru Station",
         "song_album": "Everlasting Summer",
-        "album_path": "Textures/album/everlasting_summer.jpg",
+        "album_path": "Album/everlasting_summer.jpeg",
         "track_dir": "https://p.scdn.co/mp3-preview/3473e43f252176228a75020d3c672fae3c195892"
     },
     {
@@ -36,7 +36,7 @@
         "song_name": "Urban Planning of Mercury",
         "song_artist": "R Sound Design, 熊野ぽえみ",
         "song_album": "Urban planning of Mercury",
-        "album_path": "Textures/album/urban_planning.jpg",
+        "album_path": "Album/urban_planning.jpeg",
         "track_dir": "https://p.scdn.co/mp3-preview/e934eed7375a72c3c55023f5dced9cbc594ed5dd"
     }
 ]
