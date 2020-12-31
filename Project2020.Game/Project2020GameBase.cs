@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Newtonsoft.Json;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
@@ -7,6 +8,7 @@ using osu.Framework.Graphics;
 using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Textures;
 using osu.Framework.IO.Stores;
+using Project2020.Game.Audio;
 using Project2020.Game.Models;
 using Project2020.Resources;
 
@@ -15,7 +17,10 @@ namespace Project2020.Game
     public class Project2020GameBase : osu.Framework.Game
     {
         [Cached]
-        protected readonly BindableList<TrackSong> TrackList = new BindableList<TrackSong>();
+        protected readonly List<TrackSong> TrackList = new List<TrackSong>();
+
+        [Cached]
+        protected readonly Bindable<TrackSong> ActiveTrack = new Bindable<TrackSong>();
 
         protected override Container<Drawable> Content { get; }
 
@@ -56,6 +61,10 @@ namespace Project2020.Game
             AddFont(Resources, @"Fonts/Noto-Thai");
 
             loadTrackList();
+
+            AudioTrackManager audioTrackManager;
+            dependencies.Cache(audioTrackManager = new AudioTrackManager());
+            Add(audioTrackManager);
         }
 
         private void loadTrackList()
@@ -63,6 +72,13 @@ namespace Project2020.Game
             using (Stream stream = Resources.GetStream("Config/tracklist.json"))
             using (var sr = new StreamReader(stream))
                 TrackList.AddRange(JsonConvert.DeserializeObject<List<TrackSong>>(sr.ReadToEnd()));
+        }
+
+        protected override void LoadComplete()
+        {
+            base.LoadComplete();
+
+            ActiveTrack.Value = TrackList.FirstOrDefault();
         }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using osu.Framework.Allocation;
 using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
@@ -6,12 +8,14 @@ using osu.Framework.Graphics.Containers;
 using osu.Framework.Graphics.Sprites;
 using osuTK;
 using osuTK.Graphics;
+using Project2020.Game.Audio;
 using Project2020.Game.Graphics.Fonts;
 using Project2020.Game.Models;
 
 namespace Project2020.Game.Graphics.Components.TrackList
 {
-    public class TrackListScreen : CompositeDrawable
+    [Cached(typeof(IAudioTrackOwner))]
+    public class TrackListScreen : CompositeDrawable, IAudioTrackOwner
     {
 
         private FillFlowContainer<TrackRow> trackListContainer;
@@ -22,7 +26,7 @@ namespace Project2020.Game.Graphics.Components.TrackList
         }
 
         [BackgroundDependencyLoader]
-        private void load(BindableList<TrackSong> trackList)
+        private void load(List<TrackSong> trackList)
         {
             AddRangeInternal(new Drawable[]
             {
@@ -49,6 +53,14 @@ namespace Project2020.Game.Graphics.Components.TrackList
         {
             public TrackSong TrackModel { get; }
 
+            public AudioTrack Audio => playButton.TrackPreview;
+
+            public Bindable<bool> AudioPlaying => playButton?.AudioPlayingState;
+
+            private CircularProgressPlayButton playButton;
+            private SpriteText title;
+            private SpriteIcon heartIcon;
+
             public TrackRow(TrackSong track)
             {
                 Width = 600;
@@ -56,24 +68,28 @@ namespace Project2020.Game.Graphics.Components.TrackList
                 Masking = true;
 
                 TrackModel = track;
+            }
 
+            [BackgroundDependencyLoader]
+            private void load(Bindable<TrackSong> activeTrack)
+            {
                 InternalChild = new Container
                 {
                     RelativeSizeAxes = Axes.Both,
                     Children = new Drawable[]
                     {
-                        new CircularProgressPlayButton(),
-                        new SpriteText
+                        playButton = new CircularProgressPlayButton(TrackModel),
+                        title = new SpriteText
                         {
                             Origin = Anchor.CentreLeft,
                             Anchor = Anchor.CentreLeft,
-                            Text = track.SongName,
+                            Text = TrackModel.SongName,
                             Font = FontsManager.GetFont(size: 20, weight: FontWeight.Medium),
                             Colour = Color4.DarkGray,
                             Margin = new MarginPadding { Left = 80 },
                             Padding = new MarginPadding { Bottom = 2 }
                         },
-                        new SpriteIcon
+                        heartIcon = new SpriteIcon
                         {
                             Origin = Anchor.CentreRight,
                             Anchor = Anchor.CentreRight,
@@ -83,6 +99,32 @@ namespace Project2020.Game.Graphics.Components.TrackList
                         }
                     }
                 };
+
+                activeTrack.BindValueChanged(onActiveTrackChanged);
+            }
+
+            protected override void Update()
+            {
+                base.Update();
+
+                if (AudioPlaying.Value && Audio != null && Audio.TrackLoaded)
+                    playButton.Progress.Current.Value = Audio.CurrentTime / Audio.Length;
+                else
+                    playButton.Progress.Current.Value = 0;
+            }
+
+            private void onActiveTrackChanged(ValueChangedEvent<TrackSong> r)
+            {
+                if (r.NewValue == TrackModel)
+                {
+                    heartIcon.Colour = Color4Extensions.FromHex(@"358879");
+                    title.Colour = Color4.Black;
+                }
+                else
+                {
+                    heartIcon.Colour = Color4.LightGray;
+                    title.Colour = Color4.DarkGray;
+                }
             }
         }
     }

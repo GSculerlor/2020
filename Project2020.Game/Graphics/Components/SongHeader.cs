@@ -4,11 +4,16 @@ using Project2020.Game.Graphics.Fonts;
 using osu.Framework.Graphics.Sprites;
 using osuTK.Graphics;
 using osuTK;
+using osu.Framework.Allocation;
+using osu.Framework.Bindables;
+using Project2020.Game.Models;
 
 namespace Project2020.Game.Graphics.Components
 {
     public class SongHeader : Container
     {
+        private SpriteText artist, title;
+
         public SongHeader()
         {
             RelativeSizeAxes = Axes.X;
@@ -24,9 +29,9 @@ namespace Project2020.Game.Graphics.Components
                 RelativeSizeAxes = Axes.X,
                 Children = new Drawable[]
                 {
-                    new SpriteText
+                    artist = new SpriteText
                     {
-                        Text = "R Sound Design",
+                        Text = "ganen",
                         Font = FontsManager.GetFont(size: 40, weight: FontWeight.Black),
                         Colour = Color4.LightGray,
                         RelativeSizeAxes = Axes.X,
@@ -35,9 +40,9 @@ namespace Project2020.Game.Graphics.Components
                         Truncate = true,
                         Spacing = new Vector2(2, 0)
                     },
-                    new SpriteText
+                    title = new SpriteText
                     {
-                        Text = "Urban Planning of Mercury",
+                        Text = "top 2020 songs, I guess",
                         Font = FontsManager.GetFont(size: 80, weight: FontWeight.Black),
                         Colour = Color4.Black,
                         Anchor = Anchor.CentreLeft,
@@ -49,5 +54,19 @@ namespace Project2020.Game.Graphics.Components
             };
         }
 
+        [BackgroundDependencyLoader]
+        private void load(Bindable<TrackSong> activeTrack)
+        {
+            activeTrack.BindValueChanged(onActiveTrackChanged);
+        }
+
+        private void onActiveTrackChanged(ValueChangedEvent<TrackSong> r)
+        {
+            if (r.NewValue != null)
+            {
+                title.Text = r.NewValue.SongName;
+                artist.Text = r.NewValue.SongArtist;
+            }
+        }
     }
 }

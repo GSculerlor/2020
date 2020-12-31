@@ -23,8 +23,5 @@ namespace Project2020.Game.Models
 
         [JsonProperty(@"track_dir")]
         public string TrackDir;
-
-        [JsonProperty(@"preview_time")]
-        public long PreviewTime;
     }
 }
