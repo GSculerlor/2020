@@ -1,4 +1,6 @@
+using JetBrains.Annotations;
 using osu.Framework.Allocation;
+using osu.Framework.Bindables;
 using osu.Framework.Extensions.Color4Extensions;
 using osu.Framework.Graphics;
 using osu.Framework.Graphics.Colour;
@@ -7,48 +9,70 @@ using osu.Framework.Graphics.Effects;
 using osu.Framework.Graphics.Sprites;
 using osu.Framework.Graphics.Textures;
 using osuTK.Graphics;
+using Project2020.Game.Models;
 
 namespace Project2020.Game.Graphics.Components
 {
     public class AlbumArt : CompositeDrawable
     {
+        private AlbumSprite sprite;
 
         [BackgroundDependencyLoader]
-        private void load()
+        private void load(Bindable<TrackSong> activeTrack)
         {
             Masking = true;
 
-            AddInternal(new AlbumSprite());
+            AddInternal(sprite = new AlbumSprite());
+
+            activeTrack.BindValueChanged(onActiveTrackChanged);
         }
 
-        private class AlbumSprite : BufferedContainer
+        private void onActiveTrackChanged(ValueChangedEvent<TrackSong> r)
         {
-            [BackgroundDependencyLoader]
-            private void load(LargeTextureStore texture)
+            if (r.NewValue != null)
             {
+                sprite.TrackSong = r.NewValue;
+            }
+        }
+
+        private class AlbumSprite : ModelBackedDrawable<TrackSong>
+        {
+            public TrackSong TrackSong
+            {
+                get => Model;
+                set => Model = value;
+            }
+
+            public AlbumSprite(TrackSong trackSong = null)
+            {
+                TrackSong = trackSong;
+
                 RelativeSizeAxes = Axes.Both;
                 Masking = true;
                 CornerRadius = 20;
-                CacheDrawnFrameBuffer = true;
+            }
+            protected override double LoadDelay => 200;
 
-                Children = new Drawable[]
+            [Resolved]
+            private LargeTextureStore texture { get; set; }
+
+            protected override Drawable CreateDrawable([CanBeNull] TrackSong model)
+            {
+                if (model == null)
+                    return null;
+
+                var album = new Sprite
                 {
-                    new Container
-                    {
-                        RelativeSizeAxes = Axes.Both,
-                        Children = new[]
-                        {
-                            new Sprite
-                            {
-                                RelativeSizeAxes = Axes.Both,
-                                Anchor = Anchor.Centre,
-                                Origin = Anchor.Centre,
-                                FillMode = FillMode.Fill,
-                                Texture = texture.Get("https://upload.wikimedia.org/wikipedia/en/2/2d/Ano_Yume_o_Nazotte_cover_art.jpg")
-                            },
-                        },
-                    },
+                    RelativeSizeAxes = Axes.Both,
+                    Anchor = Anchor.Centre,
+                    Origin = Anchor.Centre,
+                    FillMode = FillMode.Fill,
+                    Texture = texture.Get($"{model.AlbumPath}")
                 };
+
+                album.OnLoadComplete += d => d.FadeInFromZero(300, Easing.OutQuint);
+
+                return album;
             }
         }
     }
